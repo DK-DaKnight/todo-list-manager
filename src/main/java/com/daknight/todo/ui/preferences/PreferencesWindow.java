@@ -46,24 +46,27 @@ public class PreferencesWindow {
         ComboBox<String> langBox = new ComboBox<>();
         langBox.getItems().addAll("en", "de", "it");
         langBox.setValue(preferences.getLang());
-        langBox.setPrefWidth(800);
+        langBox.setPrefWidth(400);
         langBox.setPrefHeight(30);
+
 
         Label fontLabel = new Label("Font");
         ComboBox<String> fontBox = new ComboBox<>();
-        fontBox.getItems().addAll("Font1", "Font2", "Font3");
+        fontBox.getItems().addAll("Arial", "Font2", "Font3");
         fontBox.setValue(preferences.getFont());
-        fontBox.setPrefWidth(800);
+        fontBox.setPrefWidth(100);
         fontBox.setPrefHeight(30);
 
         Label fontSizeLabel = new Label("Font Size");
         ComboBox<Integer> fontSizeBox = new ComboBox<>();
-        for (int i = 1; i <= 80; i++) {
+        for (int i = 8; i <= 50; i++) {
             fontSizeBox.getItems().add(i);
         }
         fontSizeBox.setValue(preferences.getFontSize());
-        fontSizeBox.setPrefWidth(800);
+        fontSizeBox.setPrefWidth(100);
         fontSizeBox.setPrefHeight(30);
+        fontSizeLabel.setFont(FontConfig.getFont());
+
 
         categoryList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             contentArea.getChildren().clear();
@@ -82,8 +85,9 @@ public class PreferencesWindow {
             preferences.setLang(langBox.getValue());
             preferences.setFont(fontBox.getValue());
             preferences.setFontSize(fontSizeBox.getValue());
-
             preferencesStage.close();
+            System.out.println("Current font size: " + preferences.getFontSize());
+            System.out.println("Current theme: " + preferences.getTheme());
         });
 
         BorderPane mainLayout = new BorderPane();

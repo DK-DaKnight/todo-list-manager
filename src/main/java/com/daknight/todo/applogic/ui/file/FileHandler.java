@@ -7,7 +7,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -64,7 +63,6 @@ public class FileHandler {
     }
 
     public void addRecentFile(File file) {
-        recentFiles.remove(file);
         recentFiles.addFirst(file);
         if (recentFiles.size() > MAX_RECENT_FILES) {
             recentFiles.removeLast();

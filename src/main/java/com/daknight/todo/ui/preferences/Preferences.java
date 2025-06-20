@@ -9,8 +9,8 @@ public class Preferences {
     public Preferences() {
         this.theme = "Light";
         this.lang = "en";
-        this.font = "Font1";
-        this.fontSize = 30;
+        this.font = "Arial";
+        this.fontSize = 12;
     }
 
     public String getTheme() {

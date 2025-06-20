@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 
+import java.io.File;
+
 public class MenuBuilder {
     public static MenuBar build(Runnable onExit, FileHandler fileHandler) {
         MenuBar menuBar = new MenuBar();
@@ -23,10 +25,7 @@ public class MenuBuilder {
         newFileItem.setOnAction(e -> fileHandler.createFileAndCreateTab());
         MenuItem openFileItem = new MenuItem("Open File");
         openFileItem.setOnAction(e -> fileHandler.openFileAndCreateTab());
-        Menu recentFileMenu = fileHandler.createRecentFilesMenu();
-        recentFileMenu.setOnShowing(e -> {
-            recentFileMenu.getItems().addAll(fileHandler.createRecentFilesMenu().getItems());
-        });
+        MenuItem recentFileItem = new MenuItem("Recent Files");
         MenuItem saveFileItem = new MenuItem("Save File");
         saveFileItem.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.CONTROL_DOWN));
         MenuItem renameFileItem = new MenuItem("Rename File");
@@ -45,7 +44,7 @@ public class MenuBuilder {
         MenuItem copyItem = new MenuItem("Copy");
         copyItem.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCodeCombination.CONTROL_DOWN));
         MenuItem pasteItem = new MenuItem("Paste");
-        pasteItem.setAccelerator(new KeyCodeCombination(KeyCode.V, KeyCodeCombination.CONTROL_DOWN));
+        pasteItem.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCodeCombination.CONTROL_DOWN));
         MenuItem deleteItem = new MenuItem("Delete");
         deleteItem.setAccelerator(new KeyCodeCombination(KeyCode.DELETE));
         MenuItem selectAllItem = new MenuItem("Select All");
@@ -64,9 +63,10 @@ public class MenuBuilder {
             preferencesWindow.show();
         });
 
-        fileMenu.getItems().addAll(newFileItem, openFileItem, recentFileMenu, new SeparatorMenuItem(), saveFileItem, renameFileItem, new SeparatorMenuItem(), restartItem, exitItem);
+        fileMenu.getItems().addAll(newFileItem, openFileItem, recentFileItem, new SeparatorMenuItem(), saveFileItem, renameFileItem, new SeparatorMenuItem(), restartItem, exitItem);
         editMenu.getItems().addAll(undoItem, redoItem, new SeparatorMenuItem(), cutItem, copyItem, pasteItem, new SeparatorMenuItem(), deleteItem, selectAllItem);
-        windowMenu.getItems().addAll(newWindowItem, editorItem, appearanceItem, new SeparatorMenuItem(), showViewItem, perspectiveItem, new SeparatorMenuItem(), navigationItem, new SeparatorMenuItem(), preferencesItem);
+        windowMenu.getItems().addAll(newWindowItem, editorItem, appearanceItem, new SeparatorMenuItem(), showViewItem, perspectiveItem, new SeparatorMenuItem(), navigationItem, new SeparatorMenuItem(),preferencesItem);
+
         menuBar.getMenus().addAll(fileMenu, editMenu, windowMenu, helpMenu);
         return menuBar;
     }
