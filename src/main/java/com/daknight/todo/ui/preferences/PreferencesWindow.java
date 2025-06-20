@@ -58,7 +58,7 @@ public class PreferencesWindow {
 
         Label fontSizeLabel = new Label("Font Size");
         ComboBox<Integer> fontSizeBox = new ComboBox<>();
-        for (int i = 8; i <= 50; i++) {
+        for (int i = 1; i <= 80; i++) {
             fontSizeBox.getItems().add(i);
         }
         fontSizeBox.setValue(preferences.getFontSize());
