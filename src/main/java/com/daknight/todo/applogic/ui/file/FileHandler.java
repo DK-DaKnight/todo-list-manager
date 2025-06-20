@@ -52,7 +52,16 @@ public class FileHandler {
             addRecentFile(file);
             try {
                 Files.writeString(file.toPath(), "");
-                ToDoUI toDoUI = new ToDoUI("");
+                ToDoUI toDoUI = new ToDoUI("  [\n" +
+                        "  {\n" +
+                        "    \"todo_id\": 1,\n" +
+                        "    \"todo_title\": null,\n" +
+                        "    \"todo_description\": null,\n" +
+                        "    \"todo_deadline\": null,\n" +
+                        "    \"todo_completed\": null\n" +
+                        "  }\n" +
+                        "]\n" +
+                        "\n");
                 Tab tab = new Tab(file.getName(), toDoUI);
                 tabPane.getTabs().add(tab);
                 tabPane.getSelectionModel().select(tab);
